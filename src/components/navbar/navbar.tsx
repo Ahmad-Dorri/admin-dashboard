@@ -4,11 +4,11 @@ import {
   ListItemButton,
   ListItemText,
   ListItemIcon,
-  Link,
-  Box,
 } from '@mui/material';
 
-import { Home, AutoAwesomeMosaic, VerifiedUser } from '@mui/icons-material';
+import { Home, AutoAwesomeMosaic, Person } from '@mui/icons-material';
+
+import { Link } from 'react-router-dom';
 
 interface LinkType {
   text: string;
@@ -25,41 +25,36 @@ const links: LinkType[] = [
   {
     text: 'Profile',
     href: '/profile',
-    icon: <VerifiedUser />,
+    icon: <Person />,
   },
 ];
 
 const Navbar = () => {
   return (
-    <Box sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
-      <List
-        sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}
-        component="nav">
-        <ListItem disablePadding>
-          <Link href="/" color="inherit" underline="none">
+    <List
+      sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}
+      component="nav">
+      <ListItem disablePadding>
+        <Link to="/">
+          <ListItemButton>
+            <ListItemIcon>
+              <AutoAwesomeMosaic />
+            </ListItemIcon>
+            <ListItemText>Dashboard</ListItemText>
+          </ListItemButton>
+        </Link>
+      </ListItem>
+      {links.map((link) => (
+        <ListItem sx={{ width: 1 }} disablePadding key={link.href}>
+          <Link to={link.href}>
             <ListItemButton>
-              <ListItemIcon>
-                <AutoAwesomeMosaic />
-              </ListItemIcon>
-              <ListItemText>Dashboardsdkjf;slkdfj</ListItemText>
+              <ListItemIcon>{link.icon}</ListItemIcon>
+              <ListItemText>{link.text}</ListItemText>
             </ListItemButton>
           </Link>
         </ListItem>
-        {links.map((link) => (
-          <ListItem
-            // sx={{ justifyContent: 'center' }}
-            disablePadding
-            key={link.href}>
-            <Link href={link.href} color="inherit" underline="none">
-              <ListItemButton>
-                <ListItemIcon>{link.icon}</ListItemIcon>
-                <ListItemText>{link.text}</ListItemText>
-              </ListItemButton>
-            </Link>
-          </ListItem>
-        ))}
-      </List>
-    </Box>
+      ))}
+    </List>
   );
 };
 
