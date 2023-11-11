@@ -1,15 +1,22 @@
-import { Grid, Box } from '@mui/material';
+import { Grid, Box, Stack } from '@mui/material';
 
 import Navbar from './components/navbar/navbar';
+import Header from './components/header/header';
+import { Outlet } from 'react-router-dom';
 
 function App() {
   return (
     <Box component="main">
-      <Grid container spacing={2}>
+      <Grid container>
         <Grid item xs={3}>
           <Navbar />
         </Grid>
-        <Grid bgcolor={'blue'} item xs={9}></Grid>
+        <Grid item xs={9}>
+          <Stack direction="column">
+            <Header />
+            <Outlet />
+          </Stack>
+        </Grid>
       </Grid>
     </Box>
   );

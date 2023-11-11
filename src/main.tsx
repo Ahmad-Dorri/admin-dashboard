@@ -14,10 +14,16 @@ const router = createBrowserRouter([
   {
     path: '/',
     element: <App />,
-  },
-  {
-    path: '/profile',
-    element: <div>profile page</div>,
+    children: [
+      {
+        path: '/profile',
+        element: <div>profile page</div>,
+      },
+      {
+        path: '/messages',
+        element: <div>messages page</div>,
+      },
+    ],
   },
 ]);
 

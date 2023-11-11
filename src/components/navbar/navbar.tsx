@@ -1,52 +1,48 @@
+import { AutoAwesomeMosaic } from '@mui/icons-material';
 import {
   List,
   ListItem,
   ListItemButton,
   ListItemText,
   ListItemIcon,
+  Stack,
 } from '@mui/material';
 
-import { Home, AutoAwesomeMosaic, Person } from '@mui/icons-material';
-
 import { Link } from 'react-router-dom';
-
-interface LinkType {
-  text: string;
-  href: string;
-  icon: React.ReactElement;
-}
-
-const links: LinkType[] = [
-  {
-    text: 'Home',
-    href: '/',
-    icon: <Home />,
-  },
-  {
-    text: 'Profile',
-    href: '/profile',
-    icon: <Person />,
-  },
-];
+import { topLinks, bottomLinks } from '../../assets/links';
 
 const Navbar = () => {
   return (
     <List
-      sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}
-      component="nav">
-      <ListItem disablePadding>
-        <Link to="/">
-          <ListItemButton>
-            <ListItemIcon>
-              <AutoAwesomeMosaic />
-            </ListItemIcon>
-            <ListItemText>Dashboard</ListItemText>
-          </ListItemButton>
-        </Link>
-      </ListItem>
-      {links.map((link) => (
+      sx={{
+        width: '100%',
+        maxWidth: 360,
+        height: '100vh',
+        background: '#a5f3fc',
+      }}
+      component="nav"
+      subheader={
+        <Stack direction="row" padding={1} alignItems="center" gap={2}>
+          <AutoAwesomeMosaic />
+          <p className="font-bold text-xl">Dashboard</p>
+        </Stack>
+      }>
+      {topLinks.map((link) => (
         <ListItem sx={{ width: 1 }} disablePadding key={link.href}>
-          <Link to={link.href}>
+          <Link className="w-full overflow-hidden" to={link.href}>
+            <ListItemButton>
+              <ListItemIcon>{link.icon}</ListItemIcon>
+              <ListItemText>{link.text}</ListItemText>
+            </ListItemButton>
+          </Link>
+        </ListItem>
+      ))}
+      <br />
+      <br />
+      <br />
+      {bottomLinks.map((link) => (
+        <ListItem sx={{ width: 1 }} disablePadding key={link.href}>
+          <Link className="w-full overflow-hidden" to={link.href}>
             <ListItemButton>
               <ListItemIcon>{link.icon}</ListItemIcon>
               <ListItemText>{link.text}</ListItemText>
